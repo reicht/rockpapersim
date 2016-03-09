@@ -19,7 +19,7 @@
 #Prototyping for later
 
 class RockPaperSim
-  def initialize(testnumber)
+  def initialize(test_number)
     @test_number = test_number
     @armaments = ["rock", "paper", "scissors"]
     @left_weapon = " "
@@ -27,22 +27,23 @@ class RockPaperSim
   end
   def run
     @test_number.times do
-      RockPaperSim.rearm
-      RockPaperSim.contest
-    end
+      rearm
+      contest
     end
   end
   def rearm
-    @left_weapon = armaments[rand(0..2)]
-    @right_weapon = armaments[rand(0..2)]
+    @left_weapon = @armaments[rand(0..2)]
+    @right_weapon = @armaments[rand(0..2)]
   end
   def contest
-    if (left_weapon.upcase == ("ROCK") && right_weapon.upcase == ("SCISSORS")) ||
-      (left_weapon.upcase == ("SCISSORS") && right_weapon.upcase == ("PAPER")) ||
-      (left_weapon.upcase == ("PAPER") && right_weapon.upcase == ("ROCK"))
-      puts "Left: " + weapon.upcase + " vs Right: " + bot_weapon.upcase + " ----- RIGHT WINS"
+    if (@left_weapon.upcase == ("ROCK") && @right_weapon.upcase == ("SCISSORS")) ||
+      (@left_weapon.upcase == ("SCISSORS") && @right_weapon.upcase == ("PAPER")) ||
+      (@left_weapon.upcase == ("PAPER") && @right_weapon.upcase == ("ROCK"))
+      puts "Left: " + @left_weapon.upcase + " vs Right: " + @right_weapon.upcase + " ----- RIGHT WINS"
     else
-      puts "Right: " + weapon.upcase + " vs Left: " + bot_weapon.upcase + " ----- LEFT WINS"
+      puts "Right: " + @left_weapon.upcase + " vs Left: " + @right_weapon.upcase + " ----- LEFT WINS"
     end
   end
 end
+
+fabuloso = RockPaperSim.new(3).run
