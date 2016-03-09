@@ -1,12 +1,15 @@
 class RockPaperSim
   def initialize(test_number)
-    @test_number = test_number
     @armaments = ["rock", "paper", "scissors"]
     @left_weapon = " "
     @right_weapon = " "
     @win_chart_player = {Left: 0, Right: 0, Tie: 0}
     @win_chart_tool = {Rock: 0, Paper: 0, Scissors: 0}
-
+    if test_number.zero?
+      @test_number = 1000
+    else
+      @test_number = test_number
+    end
   end
   def run
     @test_number.times do
