@@ -4,7 +4,8 @@ class RockPaperSim
     @armaments = ["rock", "paper", "scissors"]
     @left_weapon = " "
     @right_weapon = " "
-    @win_chart = {Left: 0, Right: 0, Tie: 0, Rock: 0, Paper: 0, Scissors: 0}
+    @win_chart_player = {Left: 0, Right: 0, Tie: 0}
+    @win_chart_tool = {Rock: 0, Paper: 0, Scissors: 0}
 
   end
   def run
@@ -12,7 +13,8 @@ class RockPaperSim
       rearm
       contest
     end
-    puts @win_chart
+    puts @win_chart_player
+    puts @win_chart_tool
   end
   def rearm
     @left_weapon = @armaments[rand(0..2)]
@@ -22,33 +24,31 @@ class RockPaperSim
     if (@left_weapon.upcase == ("ROCK") && @right_weapon.upcase == ("SCISSORS")) ||
       (@left_weapon.upcase == ("SCISSORS") && @right_weapon.upcase == ("PAPER")) ||
       (@left_weapon.upcase == ("PAPER") && @right_weapon.upcase == ("ROCK"))
-      puts "Left: " + @left_weapon.upcase + " vs Right: " + @right_weapon.upcase + " ----- RIGHT WINS"
-      @win_chart.each_key do |weaponchecker|
+      @win_chart_tool.each_key do |weaponchecker|
         if weaponchecker.to_s.upcase == @right_weapon.upcase
-          @win_chart[weaponchecker] +=1
+          @win_chart_tool[weaponchecker] +=1
         end
       end
-      @win_chart[:Right] +=1
+      @win_chart_player[:Right] +=1
     elsif (@right_weapon.upcase == ("ROCK") && @left_weapon.upcase == ("SCISSORS")) ||
       (@right_weapon.upcase == ("SCISSORS") && @left_weapon.upcase == ("PAPER")) ||
       (@right_weapon.upcase == ("PAPER") && @right_weapon.upcase == ("ROCK"))
-      puts "Left: " + @left_weapon.upcase + " vs Right: " + @right_weapon.upcase + " ----- LEFT WINS"
-      @win_chart.each_key do |weaponchecker|
+      @win_chart_tool.each_key do |weaponchecker|
         if weaponchecker.to_s.upcase == @left_weapon.upcase
-          @win_chart[weaponchecker] +=1
+          @win_chart_tool[weaponchecker] +=1
         end
       end
-      @win_chart[:Left] +=1
+      @win_chart_player[:Left] +=1
     else
-      puts "Left: " + @left_weapon.upcase + " vs Right: " + @right_weapon.upcase + " -----  TIE BETWEEN"
-      @win_chart.each_key do |weaponchecker|
+      @win_chart_tool.each_key do |weaponchecker|
         if weaponchecker.to_s.upcase == @right_weapon.upcase
-          @win_chart[weaponchecker] +=1
+          @win_chart_tool[weaponchecker] +=1
         end
       end
-      @win_chart[:Tie] +=1
+      @win_chart_player[:Tie] +=1
     end
   end
 end
 
-fabuloso = RockPaperSim.new(3).run
+fabuloso = RockPaperSim.new(ARGV[0].to_i)
+fabuloso.run
