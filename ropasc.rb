@@ -46,15 +46,3 @@ class RockPaperSim
     end
   end
 end
-
-
-class Showdown
-  def initialize()
-    armaments = ["rock", "paper", "scissors"]
-    left_weapon = armaments[rand(0..2)]
-    right_weapon = armaments[rand(0..2)]
-
-
-
-  end
-end
